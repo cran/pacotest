@@ -12,8 +12,10 @@ pacotest = function(Udata,W,pacotestOptions, data = NULL, svcmDataFrame = NULL, 
     W = as.data.frame(W)
   }
   
+  dimCondSet = dim(W)[2]
+  
   # Prepare variables to be transfered to C++
-  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='ECORR' || pacotestOptions$testType=='EC')
+  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='CCC' || pacotestOptions$testType=='EC')
   {
     # Add aggregated information to the conditioning vector
     W = addAggInfo(W,pacotestOptions$aggInfo, pacotestOptions$sizeKeepingMethod)
@@ -32,7 +34,7 @@ pacotest = function(Udata,W,pacotestOptions, data = NULL, svcmDataFrame = NULL, 
     
   }
   
-  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='ECORR')
+  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='CCC')
   {
     
     if (!(pacotestOptions$withEstUncert))
@@ -42,7 +44,7 @@ pacotest = function(Udata,W,pacotestOptions, data = NULL, svcmDataFrame = NULL, 
       cPitData = matrix()
     }
     
-    out = ecorrOrEcov(testTypeNumber, as.matrix(Udata), as.matrix(W),
+    out = ecorrOrEcov(testTypeNumber, as.matrix(Udata), as.matrix(W), dimCondSet,
                       grouping, pacotestOptions$withEstUncert, pacotestOptions$estUncertWithRanks, finalComparison,
                       as.matrix(data), svcmDataFrame, cPitData,
                       aggPvalsNumbRep, expMinSampleSize, trainingDataFraction,
@@ -65,7 +67,7 @@ pacotest = function(Udata,W,pacotestOptions, data = NULL, svcmDataFrame = NULL, 
   }
   
   # Export/generate the decision tree and the illustrative plots
-  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='ECORR' || pacotestOptions$testType=='EC')
+  if (pacotestOptions$testType=='ECOV' || pacotestOptions$testType=='CCC' || pacotestOptions$testType=='EC')
   {
     # Extract decision tree(s)
     if (grouping<=3)
@@ -110,7 +112,7 @@ partitionToNumber = function(partitionIdentifier)
   }
   else
   {
-    partitionNumber = which(partitionIdentifier==c('TreeECOV','TreeECORR','TreeEC',
+    partitionNumber = which(partitionIdentifier==c('TreeECOV','TreeCCC','TreeEC',
                                                    'SumMedian','SumThirdsI','SumThirdsII','SumThirdsIII','SumQuartiles',
                                                    'ProdMedian','ProdThirdsI','ProdThirdsII','ProdThirdsIII','ProdQuartiles'),arr.ind=TRUE)
   }
@@ -120,7 +122,7 @@ partitionToNumber = function(partitionIdentifier)
 
 testTypeToNumber = function(partitionIdentifier)
 {
-  testTypeNumber = which(partitionIdentifier==c('ECOV', 'ECORR', 'VI', 'EC'),arr.ind=TRUE)
+  testTypeNumber = which(partitionIdentifier==c('ECOV', 'CCC', 'VI', 'EC'),arr.ind=TRUE)
   
   return(testTypeNumber)
 }
