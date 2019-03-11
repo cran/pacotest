@@ -1,7 +1,7 @@
-368c6c18d48a8f6c39be8dd908674a4e *DESCRIPTION
+0c7dbe4b5b05413daef838911f1b1efc *DESCRIPTION
 9ae5662e979d70ee40304980f8189ce8 *LICENSE
 0b81635f024946e066fc783398354bde *NAMESPACE
-b4dd446751bb02b76e9456f62e2a6167 *NEWS.md
+2d01b95afddab7f4293c1a7633b8fd5d *NEWS.md
 75fb895ad8fbf5c27acc49cf191793ad *R/RcppExports.R
 70f26cc9320850c9ecc8fd70a1cf8e8d *R/pacotest.R
 7399ad946ffa68fd7b16181f9196877f *R/pacotestRVine.R
@@ -37,9 +37,12 @@ b808ec5165821d6741f0063d7c240eac *src/VecIndepTest.cpp
 e3f985e43c3509ff63ecbd3c6a122e36 *src/pacotestFunctions.cpp
 544f710b1ce352d31ab9d08a3d162b47 *src/pacotest_R_HelpingFunctions.cpp
 71860f01ece16aa3a052aab6487935d0 *tests/testthat/hardCodedResEcorr.csv
+fb139c3cda0f3c88d5f5241be948b209 *tests/testthat/hardCodedResEcorr_rversion_gt3_6_0.csv
 138ec2f2e55ec696565ab22ac23189a2 *tests/testthat/hardCodedResPacotestRvineSeq.csv
+b3194e4366c6873e2e1889a2854f44ad *tests/testthat/hardCodedResPacotestRvineSeq_rversion_gt3_6_0.csv
 5e2d72619452bd3fb77833729c399e0c *tests/testthat/hardCodedResPacotestRvineSingleCopula.csv
-53b18eee3651ccccd475d88942efb187 *tests/testthat/helper-pacotestRegressionTests.R
+d2f83f26a92a146064635083f5b991fb *tests/testthat/hardCodedResPacotestRvineSingleCopula_rversion_gt3_6_0.csv
+12d91c6ef7a12daf63c429d0be713a20 *tests/testthat/helper-pacotestRegressionTests.R
 eadeeb4647edba94d2697d800c6c97ee *tests/testthat/test-extractSubTree.R
 9a26ae5315808a78c30d28438f677ef3 *tests/testthat/test-pacotestRegressionTests.R
 46507cc3825ba5a54ee24746fe7da3fa *tests/testthat/test-pacotestRvineSeqRegressionTests.R
