@@ -5,20 +5,16 @@ VI <- function(Udata, Wdata, NumbBoot) {
     .Call('_pacotest_VI', PACKAGE = 'pacotest', Udata, Wdata, NumbBoot)
 }
 
-EC <- function(Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize = 50, TrainingDataFraction = 0.5) {
-    .Call('_pacotest_EC', PACKAGE = 'pacotest', Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize, TrainingDataFraction)
+EC <- function(Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize = 50) {
+    .Call('_pacotest_EC', PACKAGE = 'pacotest', Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize)
 }
 
-ecorrOrEcov <- function(TestTypeNumber, Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, AggPvalsNumbRep = NA_real_, ExpMinSampleSize = NA_real_, TrainingDataFraction = NA_real_, penaltyLevel = NA_real_, penaltyPower = NA_real_, Gamma0Partition = NA_real_) {
-    .Call('_pacotest_ecorrOrEcov', PACKAGE = 'pacotest', TestTypeNumber, Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, AggPvalsNumbRep, ExpMinSampleSize, TrainingDataFraction, penaltyLevel, penaltyPower, Gamma0Partition)
+CCC <- function(Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, ExpMinSampleSize = NA_real_, penaltyLevel = NA_real_, penaltyPower = NA_real_, Gamma0Partition = NA_real_) {
+    .Call('_pacotest_CCC', PACKAGE = 'pacotest', Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, ExpMinSampleSize, penaltyLevel, penaltyPower, Gamma0Partition)
 }
 
 covOfCorrelationsWithEstimationFromCpp <- function(data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks) {
     invisible(.Call('_pacotest_covOfCorrelationsWithEstimationFromCpp', PACKAGE = 'pacotest', data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks))
-}
-
-covOfCovariancesWithEstimationFromCpp <- function(data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks) {
-    invisible(.Call('_pacotest_covOfCovariancesWithEstimationFromCpp', PACKAGE = 'pacotest', data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks))
 }
 
 testStatEqualCorrWithoutEstimationCpp <- function(indexVectors, nObsPerVector, Udata) {

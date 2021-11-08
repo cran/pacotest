@@ -7,6 +7,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // VI
 Rcpp::List VI(arma::mat Udata, arma::mat Wdata, double NumbBoot);
 RcppExport SEXP _pacotest_VI(SEXP UdataSEXP, SEXP WdataSEXP, SEXP NumbBootSEXP) {
@@ -21,8 +26,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // EC
-Rcpp::List EC(arma::mat Udata, arma::mat Wdata, double NumbBoot, double Grouping, double finalComparison, double ExpMinSampleSize, double TrainingDataFraction);
-RcppExport SEXP _pacotest_EC(SEXP UdataSEXP, SEXP WdataSEXP, SEXP NumbBootSEXP, SEXP GroupingSEXP, SEXP finalComparisonSEXP, SEXP ExpMinSampleSizeSEXP, SEXP TrainingDataFractionSEXP) {
+Rcpp::List EC(arma::mat Udata, arma::mat Wdata, double NumbBoot, double Grouping, double finalComparison, double ExpMinSampleSize);
+RcppExport SEXP _pacotest_EC(SEXP UdataSEXP, SEXP WdataSEXP, SEXP NumbBootSEXP, SEXP GroupingSEXP, SEXP finalComparisonSEXP, SEXP ExpMinSampleSizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,18 +37,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type Grouping(GroupingSEXP);
     Rcpp::traits::input_parameter< double >::type finalComparison(finalComparisonSEXP);
     Rcpp::traits::input_parameter< double >::type ExpMinSampleSize(ExpMinSampleSizeSEXP);
-    Rcpp::traits::input_parameter< double >::type TrainingDataFraction(TrainingDataFractionSEXP);
-    rcpp_result_gen = Rcpp::wrap(EC(Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize, TrainingDataFraction));
+    rcpp_result_gen = Rcpp::wrap(EC(Udata, Wdata, NumbBoot, Grouping, finalComparison, ExpMinSampleSize));
     return rcpp_result_gen;
 END_RCPP
 }
-// ecorrOrEcov
-Rcpp::List ecorrOrEcov(double TestTypeNumber, arma::mat Udata, arma::mat Wdata, double doubleDimCondSet, double Grouping, double doubleWithEstUncert, double doubleEstUncertWithRanks, double finalComparison, arma::mat& data, Rcpp::DataFrame svcmDataFrame, Rcpp::List cPitData, double AggPvalsNumbRep, double ExpMinSampleSize, double TrainingDataFraction, double penaltyLevel, double penaltyPower, double Gamma0Partition);
-RcppExport SEXP _pacotest_ecorrOrEcov(SEXP TestTypeNumberSEXP, SEXP UdataSEXP, SEXP WdataSEXP, SEXP doubleDimCondSetSEXP, SEXP GroupingSEXP, SEXP doubleWithEstUncertSEXP, SEXP doubleEstUncertWithRanksSEXP, SEXP finalComparisonSEXP, SEXP dataSEXP, SEXP svcmDataFrameSEXP, SEXP cPitDataSEXP, SEXP AggPvalsNumbRepSEXP, SEXP ExpMinSampleSizeSEXP, SEXP TrainingDataFractionSEXP, SEXP penaltyLevelSEXP, SEXP penaltyPowerSEXP, SEXP Gamma0PartitionSEXP) {
+// CCC
+Rcpp::List CCC(arma::mat Udata, arma::mat Wdata, double doubleDimCondSet, double Grouping, double doubleWithEstUncert, double doubleEstUncertWithRanks, double finalComparison, arma::mat& data, Rcpp::DataFrame svcmDataFrame, Rcpp::List cPitData, double ExpMinSampleSize, double penaltyLevel, double penaltyPower, double Gamma0Partition);
+RcppExport SEXP _pacotest_CCC(SEXP UdataSEXP, SEXP WdataSEXP, SEXP doubleDimCondSetSEXP, SEXP GroupingSEXP, SEXP doubleWithEstUncertSEXP, SEXP doubleEstUncertWithRanksSEXP, SEXP finalComparisonSEXP, SEXP dataSEXP, SEXP svcmDataFrameSEXP, SEXP cPitDataSEXP, SEXP ExpMinSampleSizeSEXP, SEXP penaltyLevelSEXP, SEXP penaltyPowerSEXP, SEXP Gamma0PartitionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type TestTypeNumber(TestTypeNumberSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type Udata(UdataSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type Wdata(WdataSEXP);
     Rcpp::traits::input_parameter< double >::type doubleDimCondSet(doubleDimCondSetSEXP);
@@ -54,13 +57,11 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat& >::type data(dataSEXP);
     Rcpp::traits::input_parameter< Rcpp::DataFrame >::type svcmDataFrame(svcmDataFrameSEXP);
     Rcpp::traits::input_parameter< Rcpp::List >::type cPitData(cPitDataSEXP);
-    Rcpp::traits::input_parameter< double >::type AggPvalsNumbRep(AggPvalsNumbRepSEXP);
     Rcpp::traits::input_parameter< double >::type ExpMinSampleSize(ExpMinSampleSizeSEXP);
-    Rcpp::traits::input_parameter< double >::type TrainingDataFraction(TrainingDataFractionSEXP);
     Rcpp::traits::input_parameter< double >::type penaltyLevel(penaltyLevelSEXP);
     Rcpp::traits::input_parameter< double >::type penaltyPower(penaltyPowerSEXP);
     Rcpp::traits::input_parameter< double >::type Gamma0Partition(Gamma0PartitionSEXP);
-    rcpp_result_gen = Rcpp::wrap(ecorrOrEcov(TestTypeNumber, Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, AggPvalsNumbRep, ExpMinSampleSize, TrainingDataFraction, penaltyLevel, penaltyPower, Gamma0Partition));
+    rcpp_result_gen = Rcpp::wrap(CCC(Udata, Wdata, doubleDimCondSet, Grouping, doubleWithEstUncert, doubleEstUncertWithRanks, finalComparison, data, svcmDataFrame, cPitData, ExpMinSampleSize, penaltyLevel, penaltyPower, Gamma0Partition));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -78,23 +79,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat& >::type sigma(sigmaSEXP);
     Rcpp::traits::input_parameter< int >::type intEstUncertWithRanks(intEstUncertWithRanksSEXP);
     covOfCorrelationsWithEstimationFromCpp(data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks);
-    return R_NilValue;
-END_RCPP
-}
-// covOfCovariancesWithEstimationFromCpp
-void covOfCovariancesWithEstimationFromCpp(arma::mat& data, Rcpp::DataFrame svcmDataFrame, arma::umat& indexVectors, arma::uvec& nObsPerVector, Rcpp::List cPitData, arma::vec& theta, arma::mat& sigma, int intEstUncertWithRanks);
-RcppExport SEXP _pacotest_covOfCovariancesWithEstimationFromCpp(SEXP dataSEXP, SEXP svcmDataFrameSEXP, SEXP indexVectorsSEXP, SEXP nObsPerVectorSEXP, SEXP cPitDataSEXP, SEXP thetaSEXP, SEXP sigmaSEXP, SEXP intEstUncertWithRanksSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat& >::type data(dataSEXP);
-    Rcpp::traits::input_parameter< Rcpp::DataFrame >::type svcmDataFrame(svcmDataFrameSEXP);
-    Rcpp::traits::input_parameter< arma::umat& >::type indexVectors(indexVectorsSEXP);
-    Rcpp::traits::input_parameter< arma::uvec& >::type nObsPerVector(nObsPerVectorSEXP);
-    Rcpp::traits::input_parameter< Rcpp::List >::type cPitData(cPitDataSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type theta(thetaSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< int >::type intEstUncertWithRanks(intEstUncertWithRanksSEXP);
-    covOfCovariancesWithEstimationFromCpp(data, svcmDataFrame, indexVectors, nObsPerVector, cPitData, theta, sigma, intEstUncertWithRanks);
     return R_NilValue;
 END_RCPP
 }

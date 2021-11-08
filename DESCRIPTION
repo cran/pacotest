@@ -2,8 +2,7 @@ Package: pacotest
 Type: Package
 Title: Testing for Partial Copulas and the Simplifying Assumption in
         Vine Copulas
-Version: 0.4.0
-Date: 2020-12-15
+Version: 0.4.1
 Authors@R: person("Malte S.", "Kurz", email = "malte.simon.kurz@uni-hamburg.de",
   role = c("aut", "cre"))
 Maintainer: Malte S. Kurz <malte.simon.kurz@uni-hamburg.de>
@@ -15,7 +14,7 @@ LinkingTo: Rcpp, RcppArmadillo
 Suggests: testthat, covr
 BugReports: https://github.com/MalteKurz/pacotest/issues
 NeedsCompilation: yes
-Packaged: 2020-12-15 11:18:48 UTC; runner
+Packaged: 2021-11-08 10:04:46 UTC; runner
 Author: Malte S. Kurz [aut, cre]
 Repository: CRAN
-Date/Publication: 2020-12-15 13:10:02 UTC
+Date/Publication: 2021-11-08 11:10:02 UTC
